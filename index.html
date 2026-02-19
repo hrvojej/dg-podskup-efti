@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DG Podskup u eFTI sustavu — AKD</title>
+<style>
+/* ===== AKD BRAND & BASE ===== */
+:root {
+  --akd-green: #2ecc71;
+  --akd-green-dark: #1fa855;
+  --akd-dark: #1b2a3d;
+  --akd-navy: #0f1c2e;
+  --akd-slate: #2c3e50;
+  --gray-50: #f8f9fa;
+  --gray-100: #f0f2f5;
+  --gray-200: #e2e6ea;
+  --gray-400: #a0aab4;
+  --gray-600: #6c7a89;
+  --gray-800: #343a40;
+  --danger: #e74c3c;
+  --warning: #f39c12;
+  --info: #3498db;
+  --success: #27ae60;
+  --white: #ffffff;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
+  color: var(--gray-800);
+  background: var(--gray-50);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ===== HEADER / HERO ===== */
+.hero {
+  background: linear-gradient(135deg, var(--akd-navy) 0%, var(--akd-dark) 50%, #163525 100%);
+  color: var(--white);
+  padding: 40px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 60px;
+  background: var(--gray-50);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative; z-index: 1;
+}
+.hero-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+  opacity: 0.92;
+}
+.hero-logo svg { flex-shrink: 0; }
+.hero-logo span {
+  font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--akd-green); font-weight: 600;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.hero h1 em { font-style: normal; color: var(--akd-green); }
+.hero-sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #b0c4d8;
+  max-width: 680px;
+}
+.hero-badge {
+  display: inline-block;
+  margin-top: 22px;
+  background: rgba(46,204,113,0.15);
+  border: 1px solid rgba(46,204,113,0.35);
+  color: var(--akd-green);
+  font-size: 13px; font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 24px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== TOC ===== */
+.toc-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.toc-inner {
+  max-width: 960px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; gap: 6px;
+  overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.toc-inner::-webkit-scrollbar { display: none; }
+.toc-inner a {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 14px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-600);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.toc-inner a:hover, .toc-inner a.active {
+  color: var(--akd-green-dark);
+  border-bottom-color: var(--akd-green);
+}
+.toc-num {
+  background: var(--gray-100); color: var(--gray-600);
+  font-size: 11px; font-weight: 700;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  margin-bottom: 64px;
+  scroll-margin-top: 70px;
+}
+.section-num {
+  display: inline-block;
+  font-size: 13px; font-weight: 700;
+  color: var(--akd-green);
+  background: rgba(46,204,113,0.1);
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 28px; font-weight: 700;
+  color: var(--akd-dark);
+  margin-bottom: 8px;
+}
+h3 {
+  font-size: 20px; font-weight: 700;
+  color: var(--akd-slate);
+  margin: 32px 0 12px;
+}
+p { margin-bottom: 16px; color: var(--gray-800); }
+strong { color: var(--akd-dark); }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin: 24px 0;
+  border-left: 4px solid var(--akd-green);
+}
+.card.warn { border-left-color: var(--warning); }
+.card.danger { border-left-color: var(--danger); }
+.card.info { border-left-color: var(--info); }
+.card-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--akd-dark);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ===== DIAGRAM BOXES ===== */
+.diagram-box {
+  background: var(--akd-navy);
+  color: #d0dce8;
+  border-radius: var(--radius);
+  padding: 32px;
+  margin: 28px 0;
+  overflow-x: auto;
+  box-shadow: var(--shadow-lg);
+}
+.diagram-box .label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--akd-green);
+  margin-bottom: 18px;
+  display: block;
+}
+
+/* ===== VISUAL: eFTI STRUCTURE ===== */
+.efti-visual {
+  display: flex; flex-direction: column; gap: 0;
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden; margin: 28px 0;
+}
+.efti-header {
+  background: var(--akd-dark);
+  color: var(--white);
+  padding: 16px 24px;
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex; align-items: center; gap: 10px;
+}
+.efti-std {
+  padding: 24px;
+  background: var(--gray-100);
+  border-bottom: 2px dashed var(--gray-200);
+}
+.efti-std .tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  color: var(--info);
+  background: rgba(52,152,219,0.1);
+  padding: 2px 10px; border-radius: 10px;
+  margin-bottom: 10px; letter-spacing: 0.5px;
+}
+.efti-dg {
+  padding: 24px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fff3e0 100%);
+}
+.efti-dg .tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  color: var(--warning);
+  background: rgba(243,156,18,0.15);
+  padding: 2px 10px; border-radius: 10px;
+  margin-bottom: 10px; letter-spacing: 0.5px;
+}
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.field-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 14px; line-height: 1.5;
+}
+.field-icon {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+}
+.field-icon.blue { background: rgba(52,152,219,0.12); }
+.field-icon.orange { background: rgba(243,156,18,0.15); }
+.field-label { color: var(--gray-600); font-size: 13px; }
+.field-value { font-weight: 600; color: var(--akd-dark); }
+
+/* ===== KEY FIGURE ===== */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.kpi-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  text-align: center;
+}
+.kpi-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--akd-green);
+  line-height: 1;
+}
+.kpi-number.red { color: var(--danger); }
+.kpi-number.blue { color: var(--info); }
+.kpi-number.yellow { color: var(--warning); }
+.kpi-label {
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+thead th {
+  background: var(--akd-dark);
+  color: var(--white);
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(46,204,113,0.04); }
+
+/* ===== ADR CLASSES GRID ===== */
+.adr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+.adr-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  display: flex; align-items: flex-start; gap: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.adr-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.adr-card.highlight {
+  border: 2px solid var(--akd-green);
+  background: rgba(46,204,113,0.03);
+}
+.adr-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.adr-icon.cl1 { background: #fde8e8; }
+.adr-icon.cl2 { background: #e8f4fc; }
+.adr-icon.cl3 { background: #fef3e2; }
+.adr-icon.cl4 { background: #fef9e7; }
+.adr-icon.cl5 { background: #fce4ec; }
+.adr-icon.cl6 { background: #ede7f6; }
+.adr-icon.cl7 { background: #fff9c4; }
+.adr-icon.cl8 { background: #e0f2f1; }
+.adr-icon.cl9 { background: #f3e5f5; }
+.adr-info h4 { font-size: 14px; color: var(--akd-dark); margin-bottom: 3px; }
+.adr-info p { font-size: 13px; color: var(--gray-600); margin: 0; line-height: 1.4; }
+.adr-badge {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 8px;
+  margin-top: 4px;
+  background: var(--akd-green);
+  color: var(--white);
+}
+
+/* ===== TUNNEL BAR ===== */
+.tunnel-bar {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0 12px;
+  box-shadow: var(--shadow);
+}
+.tunnel-seg {
+  flex: 1;
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 20px;
+  position: relative;
+  transition: flex 0.3s;
+}
+.tunnel-seg:hover { flex: 1.3; }
+.tunnel-seg small {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+.tunnel-seg.tA { background: #27ae60; }
+.tunnel-seg.tB { background: #8bc34a; }
+.tunnel-seg.tC { background: #f39c12; }
+.tunnel-seg.tD { background: #e67e22; }
+.tunnel-seg.tE { background: #e74c3c; }
+
+/* ===== TIMELINE / STEPS ===== */
+.steps {
+  position: relative;
+  margin: 28px 0;
+  padding-left: 38px;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--akd-green), var(--info));
+  border-radius: 3px;
+}
+.step {
+  position: relative;
+  margin-bottom: 28px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 26px;
+}
+.step::before {
+  content: attr(data-num);
+  position: absolute;
+  left: -38px; top: 20px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--akd-green);
+  color: var(--white);
+  font-size: 14px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(46,204,113,0.3);
+}
+.step-title {
+  font-size: 16px; font-weight: 700;
+  color: var(--akd-dark);
+  margin-bottom: 10px;
+}
+.step-detail { font-size: 14px; color: var(--gray-600); }
+.step-detail strong { color: var(--akd-dark); }
+
+/* ===== EXAMPLE BOX ===== */
+.example-box {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border: 1px solid rgba(46,204,113,0.25);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.example-box.bad {
+  background: linear-gradient(135deg, #fef2f2 0%, #fef2f2 100%);
+  border-color: rgba(231,76,60,0.25);
+}
+.example-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--akd-green-dark);
+  margin-bottom: 12px;
+}
+.example-box.bad .example-tag { color: var(--danger); }
+
+/* ===== DG FIELD SHOWCASE ===== */
+.dg-showcase {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin: 24px 0;
+}
+.dg-showcase-header {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: var(--white);
+  padding: 16px 24px;
+  font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.dg-field-list {
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dg-field {
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.dg-field-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: rgba(249,115,22,0.1);
+  color: #ea580c;
+  font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.dg-field-text { font-size: 14px; }
+.dg-field-text strong { display: block; color: var(--akd-dark); font-size: 13px; }
+.dg-field-text span { color: var(--gray-600); font-size: 12px; }
+
+/* ===== COMPARE / BEFORE-AFTER ===== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+.compare-card {
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.compare-card.before {
+  background: linear-gradient(135deg, #f8d7da 0%, #fce8e8 100%);
+  border: 1px solid rgba(231,76,60,0.2);
+}
+.compare-card.after {
+  background: linear-gradient(135deg, #d4edda 0%, #e8f5e9 100%);
+  border: 1px solid rgba(46,204,113,0.2);
+}
+.compare-card h4 {
+  font-size: 13px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+.compare-card.before h4 { color: var(--danger); }
+.compare-card.after h4 { color: var(--success); }
+.compare-card ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+}
+.compare-card li {
+  padding: 5px 0;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.compare-card li::before { flex-shrink: 0; font-size: 16px; }
+.compare-card.before li::before { content: '🔒'; }
+.compare-card.after li::before { content: '🔑'; }
+
+/* ===== QUESTION TABLE ===== */
+.q-table { margin: 24px 0; }
+.q-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.q-row:first-child { border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; }
+.q-row:last-child { border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; border-bottom: none; }
+.q-row.header > div {
+  background: var(--akd-dark);
+  color: var(--white);
+  font-size: 13px; font-weight: 700;
+  padding: 14px 16px;
+}
+.q-row > div {
+  padding: 14px 16px;
+  font-size: 14px;
+  background: var(--white);
+}
+.q-row > div:nth-child(2) { background: #fef2f2; color: var(--danger); }
+.q-row > div:nth-child(3) { background: #f0fdf4; color: var(--success); }
+
+/* ===== FLOW CHART (SVG) ===== */
+.flow-svg { margin: 28px 0; text-align: center; }
+.flow-svg svg { max-width: 100%; height: auto; }
+
+/* ===== ANIMATED BAR CHART ===== */
+.bar-chart {
+  margin: 20px 0;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.bar-label {
+  width: 80px;
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-800);
+  text-align: right;
+  flex-shrink: 0;
+}
+.bar-track {
+  flex: 1;
+  height: 32px;
+  background: var(--gray-100);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 13px; font-weight: 700;
+  color: var(--white);
+  transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 0;
+}
+.bar-fill.loaded { /* will be set by JS */ }
+
+/* ===== CHECK RESULTS ===== */
+.check-list {
+  list-style: none; padding: 0;
+  margin: 16px 0;
+}
+.check-list li {
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.check-list li.ok { background: rgba(46,204,113,0.08); color: var(--success); }
+.check-list li.fail { background: rgba(231,76,60,0.08); color: var(--danger); }
+.check-list li.warn { background: rgba(243,156,18,0.08); color: var(--warning); }
+
+/* ===== SUMMARY BOX ===== */
+.summary-box {
+  background: linear-gradient(135deg, var(--akd-navy) 0%, #163525 100%);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 36px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-lg);
+}
+.summary-box h3 { color: var(--akd-green); margin-top: 0; }
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.summary-item h4 {
+  color: var(--akd-green);
+  font-size: 14px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.summary-item p {
+  color: #b0c4d8;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+.summary-item ul {
+  list-style: none; padding: 0;
+  margin: 0;
+}
+.summary-item li {
+  color: #b0c4d8;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.summary-item li::before {
+  content: '›';
+  color: var(--akd-green);
+  margin-right: 8px;
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--akd-navy);
+  color: #6b8299;
+  text-align: center;
+  padding: 28px 32px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.footer strong { color: #8fa8c0; }
+
+/* ===== ACCORDION / COLLAPSIBLE ===== */
+.accordion { margin: 20px 0; }
+.acc-item {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.acc-header {
+  padding: 16px 22px;
+  cursor: pointer;
+  font-size: 15px; font-weight: 600;
+  color: var(--akd-dark);
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.2s;
+  user-select: none;
+}
+.acc-header:hover { background: var(--gray-100); }
+.acc-arrow {
+  width: 24px; height: 24px;
+  transition: transform 0.3s;
+  color: var(--gray-400);
+}
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 22px;
+}
+.acc-item.open .acc-body {
+  max-height: 600px;
+  padding: 0 22px 18px;
+}
+
+/* ===== PACKING GROUP CARDS ===== */
+.pg-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 20px 0;
+}
+.pg-card {
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.pg-card.pg1 { background: linear-gradient(135deg, #fde8e8, #fff); border: 2px solid #f8b4b4; }
+.pg-card.pg2 { background: linear-gradient(135deg, #fef3e2, #fff); border: 2px solid #fcd998; }
+.pg-card.pg3 { background: linear-gradient(135deg, #e8f5e9, #fff); border: 2px solid #a5d6a7; }
+.pg-roman { font-size: 32px; font-weight: 800; line-height: 1; }
+.pg-card.pg1 .pg-roman { color: var(--danger); }
+.pg-card.pg2 .pg-roman { color: var(--warning); }
+.pg-card.pg3 .pg-roman { color: var(--success); }
+.pg-label { font-size: 13px; font-weight: 700; color: var(--gray-800); margin-top: 4px; }
+.pg-desc { font-size: 12px; color: var(--gray-600); margin-top: 4px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .compare-grid, .dg-field-list, .pg-row { grid-template-columns: 1fr; }
+  .q-row { grid-template-columns: 1fr; }
+  .q-row > div:nth-child(2), .q-row > div:nth-child(3) { padding-left: 28px; }
+  .hero h1 { font-size: 26px; }
+  .content { padding: 32px 18px 60px; }
+  .adr-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .toc-bar { display: none; }
+  .hero { padding: 20px 0 30px; }
+  .hero::after { display: none; }
+  body { font-size: 12px; }
+  .card, .step, .adr-card, table { box-shadow: none; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <svg width="56" height="36" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="56" height="36" rx="6" fill="#2ecc71" fill-opacity="0.15"/>
+        <text x="28" y="24" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="18" font-weight="800" fill="#2ecc71">AKD</text>
+      </svg>
+      <span>Agencija za komercijalnu djelatnost</span>
+    </div>
+    <h1>Opasne tvari u eFTI sustavu<br><em>Što je DG podskup</em> i zašto je važan?</h1>
+    <p class="hero-sub">Objašnjenje uloge, sadržaja i praktične primjene DG (Dangerous Goods) podskupa unutar eFTI podatkovnog seta — s primjerima iz svakodnevnog cestovnog prijevoza u Republici Hrvatskoj.</p>
+    <span class="hero-badge">Dokument za netehničku publiku</span>
+  </div>
+</header>
+
+<!-- ===================== NAV ===================== -->
+<nav class="toc-bar">
+  <div class="toc-inner">
+    <a href="#sec1"><span class="toc-num">1</span> Osnovno</a>
+    <a href="#sec2"><span class="toc-num">2</span> Sadržaj DG</a>
+    <a href="#sec3"><span class="toc-num">3</span> Životni put</a>
+    <a href="#sec4"><span class="toc-num">4</span> Zašto je važno</a>
+    <a href="#sec5"><span class="toc-num">5</span> Primjeri</a>
+    <a href="#sec6"><span class="toc-num">6</span> Sažetak</a>
+  </div>
+</nav>
+
+<!-- ===================== CONTENT ===================== -->
+<main class="content">
+
+<!-- ========== SECTION 1 ========== -->
+<section id="sec1" class="section">
+  <span class="section-num">POGLAVLJE 1</span>
+  <h2>Osnovno — Što je eFTI, a što DG podskup?</h2>
+
+  <h3>eFTI — elektroničke prijevozne informacije</h3>
+  <p>Zamislite da svaki kamion koji vozi robu po europskim cestama nosi sa sobom <strong>digitalnu torbu s dokumentima</strong>: tko šalje robu, tko je prima, koji kamion vozi, koji vozač upravlja, odakle kreće i kamo stiže, kakva je roba unutra.</p>
+  <p>Ta &bdquo;digitalna torba&rdquo; naziva se <strong>eFTI</strong> (electronic Freight Transport Information) — europski sustav koji zamjenjuje papirne prijevozne dokumente elektroničkima. U Hrvatskoj ga operativno vodi <strong>NSCP</strong> (Nacionalni sustav elektroničke pohrane i razmjene podataka u cestovnom prijevozu).</p>
+
+  <div class="card info">
+    <div class="card-title">💡 UIL — &bdquo;OIB&rdquo; za pošiljku</div>
+    <p style="margin:0">Svaka pošiljka u eFTI sustavu ima svoj <strong>UIL</strong> (Unique Identifier Link) — jedinstveni identifikator koji omogućuje da inspektor na bilo kojoj europskoj cesti u sekundi pronađe sve podatke o pošiljci.</p>
+  </div>
+
+  <h3>DG podskup — posebna oznaka za opasne tvari</h3>
+  <p>Većina pošiljki sadrži uobičajenu robu — namještaj, odjeću, hranu, elektroniku. Ali neke pošiljke sadrže <strong>opasne tvari</strong>: benzin, kemikalije, baterije s kiselinom, eksplozive, radioaktivne materijale…</p>
+  <p>Za takve pošiljke, eFTI sustav aktivira <strong>DG podskup</strong> (Dangerous Goods set) — prošireni skup podataka koji uz standardne prijevozne informacije sadrži i sve što je relevantno za sigurnost prijevoza opasnih tvari.</p>
+
+  <!-- VISUAL: eFTI struktura -->
+  <div class="efti-visual">
+    <div class="efti-header">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="4" fill="#3498db"/><path d="M6 6h8M6 10h8M6 14h5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      eFTI PODACI ZA POŠILJKU
+    </div>
+    <div class="efti-std">
+      <span class="tag">STANDARDNI PODACI — svaka pošiljka</span>
+      <div class="field-grid">
+        <div class="field-item"><span class="field-icon blue">📨</span><div><span class="field-label">Tko šalje?</span><br><span class="field-value">Pošiljatelj</span></div></div>
+        <div class="field-item"><span class="field-icon blue">📦</span><div><span class="field-label">Tko prima?</span><br><span class="field-value">Primatelj</span></div></div>
+        <div class="field-item"><span class="field-icon blue">🚛</span><div><span class="field-label">Koji kamion?</span><br><span class="field-value">Registracija, VIN</span></div></div>
+        <div class="field-item"><span class="field-icon blue">👤</span><div><span class="field-label">Koji vozač?</span><br><span class="field-value">Ime, dozvola</span></div></div>
+        <div class="field-item"><span class="field-icon blue">📍</span><div><span class="field-label">Odakle → Kamo?</span><br><span class="field-value">Ruta</span></div></div>
+        <div class="field-item"><span class="field-icon blue">📋</span><div><span class="field-label">Kakva roba?</span><br><span class="field-value">Opis, količina, masa</span></div></div>
+      </div>
+    </div>
+    <div class="efti-dg">
+      <span class="tag">🔶 DG PODSKUP — samo kad su na kamionu opasne tvari</span>
+      <div class="field-grid">
+        <div class="field-item"><span class="field-icon orange">🔢</span><div><span class="field-label">UN broj tvari</span><br><span class="field-value">npr. UN 1203 = benzin</span></div></div>
+        <div class="field-item"><span class="field-icon orange">⚠️</span><div><span class="field-label">ADR razred</span><br><span class="field-value">9 klasa opasnosti</span></div></div>
+        <div class="field-item"><span class="field-icon orange">📊</span><div><span class="field-label">Stupanj opasnosti</span><br><span class="field-value">I, II ili III</span></div></div>
+        <div class="field-item"><span class="field-icon orange">📦</span><div><span class="field-label">Pakiranje</span><br><span class="field-value">Cisterna, bačva, IBC…</span></div></div>
+        <div class="field-item"><span class="field-icon orange">🚇</span><div><span class="field-label">Tunelski kod</span><br><span class="field-value">A do E</span></div></div>
+        <div class="field-item"><span class="field-icon orange">⚖️</span><div><span class="field-label">Količina</span><br><span class="field-value">Masa, volumen</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-number">~25.000</div>
+      <div class="kpi-label">pošiljki dnevno u RH</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number yellow">3–4%</div>
+      <div class="kpi-label">sadrži opasne tvari</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number red">~800–1.000</div>
+      <div class="kpi-label">DG pošiljki dnevno</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number blue">3.500+</div>
+      <div class="kpi-label">registriranih opasnih tvari</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 2 ========== -->
+<section id="sec2" class="section">
+  <span class="section-num">POGLAVLJE 2</span>
+  <h2>Što sve sadrži DG podskup?</h2>
+
+  <h3>UN broj — jedinstveni identifikator opasne tvari</h3>
+  <p>Svaka opasna tvar na svijetu ima svoj <strong>UN broj</strong> — četveroznamenkasti identifikator prema popisu Ujedinjenih naroda.</p>
+
+  <table>
+    <thead><tr><th>UN broj</th><th>Naziv tvari</th><th>Svakodnevnim rječnikom</th></tr></thead>
+    <tbody>
+      <tr><td><strong>UN 1203</strong></td><td>Benzin (Motor Spirit)</td><td>Gorivo na benzinskim postajama</td></tr>
+      <tr><td><strong>UN 1090</strong></td><td>Aceton</td><td>Otapalo za lak za nokte</td></tr>
+      <tr><td><strong>UN 1263</strong></td><td>Boja (Paint)</td><td>Industrijske boje i lakovi</td></tr>
+      <tr><td><strong>UN 2794</strong></td><td>Akumulator s kiselinom</td><td>Olovne baterije za automobile</td></tr>
+      <tr><td><strong>UN 1072</strong></td><td>Kisik (komprimirani)</td><td>Medicinski kisik u bocama</td></tr>
+      <tr><td><strong>UN 1965</strong></td><td>Ukapljeni naftni plin (LPG)</td><td>Plinske boce za kućanstvo</td></tr>
+    </tbody>
+  </table>
+
+  <h3>ADR razredi — 9 klasa opasnosti</h3>
+  <p>ADR razred govori <strong>koja vrsta opasnosti</strong> prijeti od tvari. ADR je europski sporazum o cestovnom prijevozu opasnih tvari.</p>
+
+  <div class="adr-grid">
+    <div class="adr-card">
+      <div class="adr-icon cl1">💥</div>
+      <div class="adr-info"><h4>Klasa 1 — Eksplozivi</h4><p>Vatrometi, streljivo, mine</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl2">🫧</div>
+      <div class="adr-info"><h4>Klasa 2 — Plinovi</h4><p>2.1 zapaljivi · 2.2 nezapaljivi · 2.3 otrovni<br>Propan, kisik, klor</p></div>
+    </div>
+    <div class="adr-card highlight">
+      <div class="adr-icon cl3">🔥</div>
+      <div class="adr-info"><h4>Klasa 3 — Zapaljive tekućine</h4><p>Benzin, dizel, boje, aceton</p><span class="adr-badge">Najčešća u RH — 62%</span></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl4">🧱</div>
+      <div class="adr-info"><h4>Klasa 4 — Zapaljive krutine</h4><p>4.1 krutine · 4.2 samozapaljive · 4.3 reagiraju s vodom</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl5">⚗️</div>
+      <div class="adr-info"><h4>Klasa 5 — Oksidirajuće tvari</h4><p>Vodikov peroksid, kalijev permanganat</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl6">☠️</div>
+      <div class="adr-info"><h4>Klasa 6 — Otrovne / zarazne</h4><p>Pesticidi, uzorci zaraznih bolesti</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl7">☢️</div>
+      <div class="adr-info"><h4>Klasa 7 — Radioaktivni materijali</h4><p>Medicinski izotopi, nuklearno gorivo</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl8">🧪</div>
+      <div class="adr-info"><h4>Klasa 8 — Korozivne tvari</h4><p>Sumporna kiselina, natrijeva lužina</p></div>
+    </div>
+    <div class="adr-card">
+      <div class="adr-icon cl9">⚠️</div>
+      <div class="adr-info"><h4>Klasa 9 — Ostale opasne tvari</h4><p>Litij baterije, azbest, suhi led</p></div>
+    </div>
+  </div>
+
+  <h3>Raspodjela DG pošiljki po klasi u RH</h3>
+  <div class="bar-chart" id="barChart">
+    <div class="bar-row"><span class="bar-label">Klasa 3</span><div class="bar-track"><div class="bar-fill" data-width="62" style="background: linear-gradient(90deg,#f39c12,#e67e22);">62%</div></div></div>
+    <div class="bar-row"><span class="bar-label">Klasa 2</span><div class="bar-track"><div class="bar-fill" data-width="18" style="background: linear-gradient(90deg,#3498db,#2980b9);">18%</div></div></div>
+    <div class="bar-row"><span class="bar-label">Klasa 8</span><div class="bar-track"><div class="bar-fill" data-width="9" style="background: linear-gradient(90deg,#1abc9c,#16a085);">9%</div></div></div>
+    <div class="bar-row"><span class="bar-label">Klasa 9</span><div class="bar-track"><div class="bar-fill" data-width="6" style="background: linear-gradient(90deg,#9b59b6,#8e44ad);">6%</div></div></div>
+    <div class="bar-row"><span class="bar-label">Ostalo</span><div class="bar-track"><div class="bar-fill" data-width="5" style="background: linear-gradient(90deg,#95a5a6,#7f8c8d);">5%</div></div></div>
+  </div>
+
+  <h3>Ambalaža skupina — stupanj opasnosti</h3>
+  <div class="pg-row">
+    <div class="pg-card pg1">
+      <div class="pg-roman">I</div>
+      <div class="pg-label">Velika opasnost</div>
+      <div class="pg-desc">Najstrože pakiranje, posebna vozila, dodatne mjere</div>
+    </div>
+    <div class="pg-card pg2">
+      <div class="pg-roman">II</div>
+      <div class="pg-label">Srednja opasnost</div>
+      <div class="pg-desc">Standardno ADR pakiranje i oprema (npr. benzin)</div>
+    </div>
+    <div class="pg-card pg3">
+      <div class="pg-roman">III</div>
+      <div class="pg-label">Mala opasnost</div>
+      <div class="pg-desc">Lakši zahtjevi, ali i dalje ADR pravila (npr. dizel)</div>
+    </div>
+  </div>
+
+  <h3>Tunnel Restriction Code — smije li kamion u tunel?</h3>
+  <p>Cestovni tuneli su kritična mjesta — u slučaju nesreće, zatvoreni prostor višestruko povećava opasnost. DG podskup sadrži <strong>oznaku tunelskog ograničenja</strong>:</p>
+  <div class="tunnel-bar">
+    <div class="tunnel-seg tA">A<small>Bez ograničenja</small></div>
+    <div class="tunnel-seg tB">B<small>Lagana</small></div>
+    <div class="tunnel-seg tC">C<small>Srednja</small></div>
+    <div class="tunnel-seg tD">D<small>Visoka</small></div>
+    <div class="tunnel-seg tE">E<small>Potpuna zabrana</small></div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-top:8px;"><strong>Primjer:</strong> Kamion s cisternom benzina (UN 1203, kod C) ne smije prolaziti tunelima kategorije C, D i E — mora ići alternativnom cestom.</p>
+
+  <h3>Transportna kategorija — koliko smije biti na jednom kamionu?</h3>
+  <table>
+    <thead><tr><th>Kategorija</th><th>Ograničenje</th><th>Tipični primjeri</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0</strong></td><td>Najstroža — bez olakšica</td><td>Eksplozivi podklase 1.1, radioaktivni</td></tr>
+      <tr><td><strong>1</strong></td><td>Maks. 20 kg/L ukupno</td><td>Zapaljivi plinovi, otrovne tvari</td></tr>
+      <tr><td><strong>2</strong></td><td>Maks. 333 kg/L ukupno</td><td>Benzin, aceton</td></tr>
+      <tr><td><strong>3</strong></td><td>Maks. 1.000 kg/L ukupno</td><td>Dizel, boje</td></tr>
+      <tr><td><strong>4</strong></td><td>Bez ograničenja količine</td><td>Male opasnosti (litij baterije ograničene kol.)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== SECTION 3 ========== -->
+<section id="sec3" class="section">
+  <span class="section-num">POGLAVLJE 3</span>
+  <h2>Životni put jedne pošiljke opasnih tvari</h2>
+  <p>Slijedimo konkretan primjer — <strong>cisterna benzina od Rijeke do Zagreba</strong> — kroz cijeli sustav, korak po korak.</p>
+
+  <div class="steps">
+    <!-- STEP 1 -->
+    <div class="step" data-num="1">
+      <div class="step-title">Tvrtka stvara pošiljku u eFTI sustavu</div>
+      <div class="step-detail">
+        <p>Prijevoznička tvrtka „Adriatic Transport d.o.o." unosi podatke o pošiljci u eFTI platformu:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:13px;margin-top:10px;">
+          <div><strong>Pošiljatelj:</strong> INA d.d., Rafinerija Rijeka</div>
+          <div><strong>Primatelj:</strong> Petrol d.o.o., Terminal Zagreb-Žitnjak</div>
+          <div><strong>Prijevoznik:</strong> Adriatic Transport d.o.o.</div>
+          <div><strong>Vozilo:</strong> ZG-7823-KD (cisterna)</div>
+          <div><strong>Vozač:</strong> Marko H. (ADR potvrda HR-ADR-D-2024-…)</div>
+          <div><strong>Ruta:</strong> Rijeka → A6 → A1 → Zagreb</div>
+        </div>
+        <div class="dg-showcase" style="margin-top:16px;">
+          <div class="dg-showcase-header">🔶 DG PODSKUP — aktiviran za ovu pošiljku</div>
+          <div class="dg-field-list">
+            <div class="dg-field"><div class="dg-field-num">1</div><div class="dg-field-text"><strong>UN 1203</strong><span>Benzin</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">2</div><div class="dg-field-text"><strong>Klasa 3</strong><span>Zapaljive tekućine</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">3</div><div class="dg-field-text"><strong>Klasifik. kod F1</strong><span>Niska viskoznost</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">4</div><div class="dg-field-text"><strong>Ambalaža II</strong><span>Srednja opasnost</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">5</div><div class="dg-field-text"><strong>CISTERNA</strong><span>Fiksna na vozilu</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">6</div><div class="dg-field-text"><strong>24.000 litara</strong><span>Količina</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">7</div><div class="dg-field-text"><strong>Tunnel: C</strong><span>Ne smije C/D/E tunele</span></div></div>
+            <div class="dg-field"><div class="dg-field-num">8</div><div class="dg-field-text"><strong>Kategorija 2</strong><span>Maks. 333 kg/L</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" data-num="2">
+      <div class="step-title">Pošiljka dobiva DG oznaku u registru</div>
+      <div class="step-detail">
+        <p>Čim eFTI platforma detektira opasnu tvar (klasificiranu po UN broju), sustav automatski:</p>
+        <ul class="check-list">
+          <li class="ok">✅ Uključuje DG podskup u eFTI zapis</li>
+          <li class="ok">✅ Dodaje oznaku <strong>dgOznaka = DA</strong> u UIL registar</li>
+          <li class="ok">✅ Pošiljka postaje vidljiva kontrolnim tijelima s DG filtrima</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" data-num="3">
+      <div class="step-title">Inspektor zaustavlja kamion na cesti</div>
+      <div class="step-detail">
+        <p>Inspektor nadzora opasnih tvari zaustavlja kamion na autocesti A1 kod Karlovca. Putem uređaja pristupa eFTI sustavu i unosi registraciju <strong>ZG-7823-KD</strong>.</p>
+        <ul class="check-list" style="margin-top:12px;">
+          <li class="ok">✅ eFTI pošiljka pronađena — UN 1203, Benzin, Klasa 3</li>
+          <li class="ok">✅ ADR potvrda vozača važeća do 15.03.2028.</li>
+          <li class="ok">✅ ADR certifikat vozila važeći do 22.11.2026.</li>
+          <li class="ok">✅ ADR oprema kompletna</li>
+          <li class="ok">✅ Ruta ne sadrži zabranjene tunele</li>
+          <li class="ok">✅ Radno vrijeme vozača (Taho) — u granicama propisa</li>
+        </ul>
+        <div class="card" style="margin-top:14px;border-left-color:var(--success);">
+          <div class="card-title" style="color:var(--success);">✅ ISHOD NADZORA: SUKLADNO</div>
+          <p style="margin:0;font-size:14px;">Kamion može nastaviti vožnju. Inspektor je u <strong>sekundama</strong> provjerio sve što je važno — zahvaljujući DG podskupu.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" data-num="4">
+      <div class="step-title">Podaci ulaze u analitičku platformu (noćna obrada)</div>
+      <div class="step-detail">
+        <p>Noću (02:00–06:00), svi dnevni podaci automatski se obrađuju u tri koraka:</p>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" data-num="5">
+      <div class="step-title">Rukovoditelji i analitičari koriste podatke</div>
+      <div class="step-detail">
+        <p>Sutradan, na interaktivnim dashboardima vidljivi su objedinjeni podaci iz sva tri sustava.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini pipeline visual -->
+  <div class="flow-svg">
+    <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" style="max-width:780px;">
+      <!-- Sources -->
+      <rect x="10" y="20" width="140" height="50" rx="10" fill="#3498db" opacity="0.9"/>
+      <text x="80" y="50" text-anchor="middle" fill="#fff" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif">eFTI pošiljka</text>
+      <rect x="10" y="80" width="140" height="50" rx="10" fill="#e67e22" opacity="0.9"/>
+      <text x="80" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif">eADR nadzor</text>
+      <rect x="10" y="140" width="140" height="50" rx="10" fill="#9b59b6" opacity="0.9"/>
+      <text x="80" y="170" text-anchor="middle" fill="#fff" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif">Taho aktivnost</text>
+      <!-- Arrows to Raw -->
+      <path d="M150,45 L210,95" stroke="#7f8c8d" stroke-width="2" fill="none" marker-end="url(#arrowG)"/>
+      <path d="M150,105 L210,105" stroke="#7f8c8d" stroke-width="2" fill="none" marker-end="url(#arrowG)"/>
+      <path d="M150,165 L210,115" stroke="#7f8c8d" stroke-width="2" fill="none" marker-end="url(#arrowG)"/>
+      <!-- Raw -->
+      <rect x="220" y="72" width="130" height="60" rx="10" fill="#1b2a3d"/>
+      <text x="285" y="97" text-anchor="middle" fill="#95a5a6" font-size="10" font-weight="600" font-family="Segoe UI,sans-serif">SIROVI PODACI</text>
+      <text x="285" y="114" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif">Raw</text>
+      <!-- Arrow -->
+      <path d="M350,102 L400,102" stroke="#2ecc71" stroke-width="2.5" fill="none" marker-end="url(#arrowG)"/>
+      <text x="375" y="92" text-anchor="middle" fill="#7f8c8d" font-size="9" font-family="Segoe UI,sans-serif">čišćenje</text>
+      <!-- Silver -->
+      <rect x="410" y="72" width="130" height="60" rx="10" fill="#1b2a3d"/>
+      <text x="475" y="97" text-anchor="middle" fill="#95a5a6" font-size="10" font-weight="600" font-family="Segoe UI,sans-serif">OČIŠĆENO</text>
+      <text x="475" y="114" text-anchor="middle" fill="#c0c0c0" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif">Silver</text>
+      <!-- Arrow -->
+      <path d="M540,102 L590,102" stroke="#2ecc71" stroke-width="2.5" fill="none" marker-end="url(#arrowG)"/>
+      <text x="565" y="92" text-anchor="middle" fill="#7f8c8d" font-size="9" font-family="Segoe UI,sans-serif">spajanje</text>
+      <!-- Gold -->
+      <rect x="600" y="72" width="130" height="60" rx="10" fill="#f39c12"/>
+      <text x="665" y="97" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" font-family="Segoe UI,sans-serif">GOTOVO ZA ANALIZU</text>
+      <text x="665" y="114" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif">Gold ⭐</text>
+      <!-- Arrow to dashboard -->
+      <path d="M730,102 L760,102" stroke="#2ecc71" stroke-width="2.5" fill="none" marker-end="url(#arrowG)"/>
+      <!-- Dashboard icon -->
+      <rect x="765" y="82" width="8" height="40" rx="3" fill="#2ecc71"/>
+      <defs>
+        <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#2ecc71"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Dashboard mockup -->
+  <div class="card" style="margin-top:0;">
+    <div class="card-title">📊 Dashboard — Pregled prijevoza opasnih tvari (18.02.2026.)</div>
+    <div class="kpi-row" style="margin-top:16px;">
+      <div class="kpi-card"><div class="kpi-number">847</div><div class="kpi-label">DG pošiljki danas</div></div>
+      <div class="kpi-card"><div class="kpi-number">128</div><div class="kpi-label">nadzora provedeno</div></div>
+      <div class="kpi-card"><div class="kpi-number" style="color:var(--success);">91,4%</div><div class="kpi-label">stopa sukladnosti</div></div>
+      <div class="kpi-card"><div class="kpi-number" style="color:var(--success);">0</div><div class="kpi-label">incidenata</div></div>
+    </div>
+    <div style="margin-top:14px;padding:14px 18px;background:rgba(243,156,18,0.06);border-radius:8px;font-size:13px;">
+      <strong style="color:var(--warning);">⚠️ Upozorenja:</strong><br>
+      • 3 vozača s ADR potvrdom koja ističe u roku 30 dana<br>
+      • 2 vozila s ADR certifikatom na isteku<br>
+      • Prijevoznik &bdquo;XY Transport&rdquo; — risk score 78/100 (visok)
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 4 ========== -->
+<section id="sec4" class="section">
+  <span class="section-num">POGLAVLJE 4</span>
+  <h2>Zašto je DG podskup toliko važan?</h2>
+
+  <h3>Povezuje tri odvojena sustava</h3>
+  <p>Prije uvođenja objedinjene analitike, podaci su bili zatvoreni u tri odvojena sustava — kao <strong>tri sobe bez vrata</strong> između njih.</p>
+
+  <div class="compare-grid">
+    <div class="compare-card before">
+      <h4>❌ Prije — tri odvojena sustava</h4>
+      <ul>
+        <li><strong>TAHO</strong> — samo radno vrijeme vozača</li>
+        <li><strong>NSCP (eFTI)</strong> — samo pošiljke i roba</li>
+        <li><strong>eADR</strong> — samo ADR potvrde, nadzori</li>
+        <li>Inspektor ručno provjeravao svaki sustav</li>
+        <li>Nemoguće otkriti: „Umoran vozač prevozi eksplozive"</li>
+      </ul>
+    </div>
+    <div class="compare-card after">
+      <h4>✅ Poslije — sustavi povezani putem DG podskupa</h4>
+      <ul>
+        <li><strong>UN broj</strong> i <strong>ADR razred</strong> iz DG-a spojeni s eADR-om</li>
+        <li><strong>Vozilo</strong> i <strong>vozač</strong> povezani s Tahom</li>
+        <li>Automatska provjera u sekundama</li>
+        <li>Objedinjeni risk score iz sva 3 sustava</li>
+        <li>Odgovor: „Tko prevozi što, kako, i je li sve u redu?"</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Omogućuje odgovor na pitanja koja se prije nisu mogla postaviti</h3>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        Prevozi li umoran vozač opasne tvari?
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>❌ <strong>Bez DG podskupa:</strong> Nemoguće — Taho ne zna za opasne tvari.</p>
+        <p>✅ <strong>S DG podskupom:</strong> Spajanje Taho aktivnosti + DG podskup automatski otkriva rizik.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        Je li vozačeva ADR potvrda važeća za tu klasu tvari?
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>❌ <strong>Bez DG podskupa:</strong> eADR ne zna koje tvari su na kamionu.</p>
+        <p>✅ <strong>S DG podskupom:</strong> DG podskup daje klasu tvari, eADR provjerava potvrdu — automatski.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        Koji prijevoznici predstavljaju najveći rizik?
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>❌ <strong>Bez DG podskupa:</strong> Svaki sustav vidi samo dio slike.</p>
+        <p>✅ <strong>S DG podskupom:</strong> Objedinjeni risk score iz Taha + eADR-a + NSCP-a.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        Koja opasna tvar ima najviše incidenata?
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>❌ <strong>Bez DG podskupa:</strong> Ne postoji veza tvar → incident.</p>
+        <p>✅ <strong>S DG podskupom:</strong> DG podskup (UN broj) → eADR incident — automatska korelacija.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        Smije li kamion na predviđenu rutu kroz tunele?
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body">
+        <p>❌ <strong>Bez DG podskupa:</strong> Ručna provjera svake dionice.</p>
+        <p>✅ <strong>S DG podskupom:</strong> Tunnel restriction kod iz DG podskupa automatski uspoređen s rutom.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Štiti živote i okoliš</h3>
+  <p>U Hrvatskoj svakodnevno cestama prometuje <strong>oko 800 do 1.000 pošiljki opasnih tvari</strong>. DG podskup osigurava:</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:20px 0;">
+    <div class="card" style="border-left-color:#27ae60;padding:18px 20px;margin:0;">
+      <div style="font-size:22px;margin-bottom:6px;">🛡️</div>
+      <strong>Vozač ima odgovarajuću obuku</strong>
+      <p style="font-size:13px;margin:4px 0 0;color:var(--gray-600);">Provjera ADR potvrde za klasu tvari</p>
+    </div>
+    <div class="card" style="border-left-color:#27ae60;padding:18px 20px;margin:0;">
+      <div style="font-size:22px;margin-bottom:6px;">🚛</div>
+      <strong>Vozilo je certificirano</strong>
+      <p style="font-size:13px;margin:4px 0 0;color:var(--gray-600);">ADR certifikat vozila за prijevoz te klase</p>
+    </div>
+    <div class="card" style="border-left-color:#27ae60;padding:18px 20px;margin:0;">
+      <div style="font-size:22px;margin-bottom:6px;">🗺️</div>
+      <strong>Ruta je dopuštena</strong>
+      <p style="font-size:13px;margin:4px 0 0;color:var(--gray-600);">Eksplozivi ne smiju kroz tunele</p>
+    </div>
+    <div class="card" style="border-left-color:#27ae60;padding:18px 20px;margin:0;">
+      <div style="font-size:22px;margin-bottom:6px;">⏰</div>
+      <strong>Vozač nije preumoran</strong>
+      <p style="font-size:13px;margin:4px 0 0;color:var(--gray-600);">Spajanje s tahografskim podacima</p>
+    </div>
+    <div class="card" style="border-left-color:#27ae60;padding:18px 20px;margin:0;">
+      <div style="font-size:22px;margin-bottom:6px;">📋</div>
+      <strong>Dokumentacija potpuna</strong>
+      <p style="font-size:13px;margin:4px 0 0;color:var(--gray-600);">Provjera u sekundama na cesti</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 5 ========== -->
+<section id="sec5" class="section">
+  <span class="section-num">POGLAVLJE 5</span>
+  <h2>Konkretni primjeri</h2>
+
+  <h3>Primjer 1: Prijevoz akumulatora (Slavonski Brod → Split)</h3>
+
+  <div class="example-box">
+    <div class="example-tag">✅ Primjer uspješnog kreiranja DG zapisa</div>
+    <div class="steps" style="margin:14px 0 0;padding-left:34px;">
+      <div class="step" data-num="1" style="margin-bottom:18px;">
+        <div class="step-title">Pošiljatelj kreira pošiljku</div>
+        <div class="step-detail" style="font-size:13px;">
+          <strong>Munja Akumulatori d.o.o.</strong>, Slavonski Brod → <strong>Auto Centar Dalmatina d.o.o.</strong>, Split<br>
+          Prijevoznik: Flash Logistika d.o.o. · Dokument: e-CMR (elektronički teretni list)
+        </div>
+      </div>
+      <div class="step" data-num="2" style="margin-bottom:18px;">
+        <div class="step-title">Sustav detektira opasnu tvar</div>
+        <div class="step-detail" style="font-size:13px;">
+          Roba: „Akumulatori s tekućim elektrolitom" → sustav prepoznaje <strong>UN 2794</strong> → aktivira DG podskup.
+        </div>
+      </div>
+      <div class="step" data-num="3" style="margin-bottom:18px;">
+        <div class="step-title">Automatsko popunjavanje DG polja</div>
+        <div class="step-detail">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:13px;margin-top:6px;">
+            <div>🔢 <strong>UN 2794</strong> — Akumulator s kiselinom</div>
+            <div>⚠️ <strong>Klasa 8</strong> — Korozivne tvari</div>
+            <div>📊 <strong>Ambalaža III</strong> — Mala opasnost</div>
+            <div>🚇 <strong>Tunnel E</strong> — Zabrana u kat. E tunelima</div>
+            <div>📦 <strong>200 komada</strong> — 3.400 kg</div>
+            <div>🏷️ <strong>Kategorija 3</strong> — Maks 1.000 kg/L</div>
+          </div>
+        </div>
+      </div>
+      <div class="step" data-num="4" style="margin-bottom:0;">
+        <div class="step-title">Sustav automatski provjerava</div>
+        <div class="step-detail">
+          <ul class="check-list" style="margin:8px 0 0;">
+            <li class="ok">✅ Vozač ima ADR potvrdu za klasu 8</li>
+            <li class="ok">✅ Vozilo ima ADR certifikat za klasu 8</li>
+            <li class="ok">✅ Količina u granicama (3.400 kg &lt; 1.000 kg limit ne primjenjuje se za kat. 3 bez volumnog ograničenja)</li>
+            <li class="ok">✅ Ruta A3 + A1 — nema tunela kategorije E</li>
+          </ul>
+          <div style="margin-top:10px;padding:10px 14px;background:rgba(39,174,96,0.08);border-radius:8px;color:var(--success);font-weight:700;font-size:14px;">
+            ✅ Pošiljka je validna — može krenuti na put.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Primjer 2: Nadzor otkriva nesukladnost</h3>
+
+  <div class="example-box bad">
+    <div class="example-tag">❌ Primjer nesukladnosti</div>
+    <p style="margin-top:8px;">Inspektor na A1 zaustavlja kamion s oznakom opasnih tvari. DG podskup kaže: <strong>UN 1203 (benzin), Klasa 3, Ambalaža II, Cisterna</strong>.</p>
+
+    <ul class="check-list" style="margin-top:12px;">
+      <li class="fail">❌ ADR potvrda vozača istekla prije 2 mjeseca!</li>
+      <li class="warn">⚠️ ADR certifikat vozila ističe za 15 dana</li>
+    </ul>
+
+    <div class="card danger" style="margin-top:16px;">
+      <div class="card-title" style="color:var(--danger);">❌ ISHOD NADZORA: NESUKLADNO</div>
+      <div style="font-size:14px;margin-top:8px;">
+        <strong>Mjere:</strong>
+        <ul style="margin:6px 0 0 18px;">
+          <li>Zabrana daljnjeg prometovanja</li>
+          <li>Novčana kazna prijevozniku</li>
+          <li>Obavijest MMPI-u</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>U analitičkom sustavu:</strong><br>
+        Risk score prijevoznika raste · Označen za pojačani nadzor · Upozorenje: <em>„Vozač bez važeće ADR potvrde prevozio 24.000L benzina"</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 6 ========== -->
+<section id="sec6" class="section">
+  <span class="section-num">POGLAVLJE 6</span>
+  <h2>Sažetak</h2>
+
+  <div class="summary-box">
+    <h3>DG Podskup — sve na jednom mjestu</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <h4>Što je?</h4>
+        <p>Prošireni skup podataka unutar eFTI sustava koji se aktivira kad pošiljka sadrži opasne tvari.</p>
+      </div>
+      <div class="summary-item">
+        <h4>Što sadrži?</h4>
+        <ul>
+          <li>UN broj tvari (identifikacija)</li>
+          <li>ADR razred (vrsta opasnosti)</li>
+          <li>Ambalaža skupina I/II/III</li>
+          <li>Tip pakovanja</li>
+          <li>Tunnel restriction A–E</li>
+          <li>Transportna kategorija 0–4</li>
+          <li>Količina, posebne upute</li>
+        </ul>
+      </div>
+      <div class="summary-item">
+        <h4>Čemu služi?</h4>
+        <ul>
+          <li>Provjera na cesti u sekundama</li>
+          <li>Spajanje s ADR potvrdama i certifikatima</li>
+          <li>Povezivanje tri sustava (Taho, NSCP, eADR)</li>
+          <li>Analiza rizika, trendova, incidenata</li>
+        </ul>
+      </div>
+      <div class="summary-item">
+        <h4>Ključne brojke</h4>
+        <ul>
+          <li>~800–1.000 DG pošiljki/dan u RH</li>
+          <li>3–4% svih cestovnih pošiljki</li>
+          <li>3.500+ registriranih opasnih tvari</li>
+          <li>9 ADR klasa opasnosti</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-size:12px;color:#6b8299;text-align:center;">Temeljeno na: EU Uredba 2020/1056 (eFTI) · ADR europski sporazum · Delegirana uredba (EU) 2024/2024</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <strong>AKD</strong> — Agencija za komercijalnu djelatnost d.o.o.<br>
+  Savska cesta 31, HR-10000 Zagreb · <strong>www.akd.hr</strong><br>
+  <span style="font-size:11px;margin-top:4px;display:inline-block;">Dokument pripremljen na temelju projektne dokumentacije objedinjene analitike AFFINIS sustava (NPOO C1.4.R1-I5 eADR)</span>
+</footer>
+
+<!-- ===================== JS ===================== -->
+<script>
+// Accordion toggle
+function toggleAcc(el) {
+  var item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// Animate bar chart on scroll into view
+function animateBars() {
+  var bars = document.querySelectorAll('.bar-fill');
+  bars.forEach(function(bar) {
+    var rect = bar.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      bar.style.width = bar.getAttribute('data-width') + '%';
+    }
+  });
+}
+
+// Highlight active nav item on scroll
+function highlightNav() {
+  var sections = document.querySelectorAll('.section');
+  var links = document.querySelectorAll('.toc-inner a');
+  var scrollY = window.scrollY + 100;
+  sections.forEach(function(sec, i) {
+    if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
+      links.forEach(function(l) { l.classList.remove('active'); });
+      if (links[i]) links[i].classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', function() {
+  animateBars();
+  highlightNav();
+});
+
+// Initial trigger
+window.addEventListener('load', function() {
+  setTimeout(animateBars, 300);
+});
+</script>
+
+</body>
+</html>
